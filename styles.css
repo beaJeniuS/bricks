@@ -1,0 +1,16 @@
+:root {
+  --color1: url(./src/images/color1.jpg);
+  --color2: url(./src/images/color2.jpg);
+  --color3: url(./src/images/color3.jpg);
+  --color4: url(./src/images/color4.jpg);
+  --color5: url(./src/images/color5.jpg);
+  --color6: url(./src/images/color6.jpg);
+  --color7: url(./src/images/color7.jpg);
+  --color8: url(./src/images/color8.jpg);
+  --color9: url(./src/images/color9.jpg);
+  --background: #3c3c3c;
+  --border-color: #909090;
+  --no-color: #1c1c1c;
+  --dialog-header-color: #054688;
+  --selection-color: #00babd;
+}
