@@ -113,3 +113,64 @@
 .image-button:hover .active-el {
   fill: var(--selection-color);
 }
+
+.brick {
+  width: 50px;
+  height: 14px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 10px;
+}
+
+.brick.show span {
+  display: block;
+}
+
+.brick span {
+  display: none;
+}
+
+.brick:hover {
+  border: 1px solid #ff0000;
+}
+
+.color {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.color1 {
+  background-image: var(--color1);
+}
+
+.color2 {
+  background-image: var(--color2);
+}
+
+.color3 {
+  background-image: var(--color3);
+}
+
+.color4 {
+  background-image: var(--color4);
+}
+
+.color5 {
+  background-image: var(--color5);
+}
+
+.color6 {
+  background-image: var(--color6);
+}
+
+.color7 {
+  background-image: var(--color7);
+}
+
+.color8 {
+  background-image: var(--color8);
+}
+
+.color9 {
+  background-image: var(--color9);
+}
