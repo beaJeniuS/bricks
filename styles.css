@@ -70,3 +70,46 @@
   display: flex;
   column-gap: 5px;
 }
+
+.dialog-button {
+  padding: 10px;
+  color: #ffffff;
+  background-color: var(--dialog-header-color);
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+
+.dialog-button:hover {
+  border: 2px solid var(--selection-color);
+}
+
+.dialog-button:active {
+  transform: translateY(2px);
+}
+
+.dialog-button:disabled {
+  background-color: var(--border-color);
+}
+
+.image-button {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.image-button:hover {
+  color: var(--selection-color);
+}
+
+.image-button svg {
+  width: 32px;
+  height: 32px;
+}
+
+.image-button path {
+  fill: #ffffff;
+}
+
+.image-button:hover .active-el {
+  fill: var(--selection-color);
+}
