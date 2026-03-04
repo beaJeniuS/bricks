@@ -95,10 +95,6 @@ class AppState {
   }
 
   deleteCurrentLayout() {
-    console.log(this._layouts);
-    console.log(
-      this._layouts.filter((layout) => layout !== this._currentLayout),
-    );
     this._layouts = this._layouts.filter(
       (layout) => layout !== this._currentLayout,
     );
