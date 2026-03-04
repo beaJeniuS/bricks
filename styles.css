@@ -53,6 +53,52 @@
   column-gap: 20px;
 }
 
+.color-sample {
+  width: 75px;
+  height: 21px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #c0c0c0;
+  box-shadow: 1px 1px 1px #090909;
+  position: relative;
+}
+
+.color-sample span {
+  user-select: none;
+}
+
+.color-sample .sample-del-btn {
+  position: absolute;
+  left: 100%;
+  width: 15px;
+  height: 15px;
+  top: 3px;
+  font-size: 8px;
+  display: none;
+  background-color: var(--dialog-header-color);
+  border-radius: 3px;
+  border: 2px solid var(--dialog-header-color);
+  color: #ffffff;
+}
+
+.color-sample .sample-replace-btn {
+  position: absolute;
+  left: calc(100% + 18px);
+  width: 15px;
+  height: 15px;
+  top: 3px;
+  display: none;
+  background-image: var(--dialog-header-color);
+  border-radius: 3px;
+  border: 2px solid var(--dialog-header-color);
+  color: #ffffff;
+}
+
+.color-sample:hover .sample-del-btn,
+.color-sample:hover .sample-replace-btn {
+  display: block;
+}
+
 .reports {
   display: flex;
   padding: 20px;
