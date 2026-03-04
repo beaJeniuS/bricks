@@ -175,3 +175,5 @@ class AppState {
     if (current) this._currentLayout = current;
   }
 }
+
+export default AppState;
