@@ -237,3 +237,31 @@
   display: block;
   user-select: none;
 }
+
+.log {
+  display: flex;
+  column-gap: 10px;
+  padding: 10px;
+  border: 1px solid #000000;
+  width: 430px;
+}
+.log__item {
+  border: 1px solid #000000;
+  width: 300px;
+  height: 100px;
+  font-size: 14px;
+}
+
+.door {
+  position: absolute;
+  width: 170px;
+  height: 416px;
+  background-color: var(--background);
+  top: 120px;
+  left: 215px;
+  display: none;
+}
+
+.door.show {
+  display: block;
+}
