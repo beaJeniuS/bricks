@@ -1,5 +1,5 @@
-import AppState from "./appState.js";
-import Layout from "./layout.js";
+import AppState from "./scripts/appState.js";
+import Layout from "./scripts/layout.js";
 
 const bricksCountEl = document.querySelector("#bricks-count");
 const rowsCountEl = document.querySelector("#rows-count");
