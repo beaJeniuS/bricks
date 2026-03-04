@@ -35,3 +35,26 @@ function generate() {
   }
   appState.design = newDesign;
 }
+
+function updateSamples() {
+  layout.replaceChildren();
+  if (appState.design.length) {
+    for (let i = 0; i < appState.rowsCount; i++) {
+      const row = document.createElement("div");
+      row.className = "row";
+      layout.append(row);
+      for (let j = 0; j < appState.bricksCount; j++) {
+        const brick = document.createElement("div");
+        brick.classList.add("brick");
+        brick.classList.add("color");
+        brick.classList.add(`color${appState.design[i][j]}`);
+        if (appState.showNumbers) brick.classList.add(`show`);
+        brick.innerHTML = `<span>${appState.design[i][j]}</span>`;
+        brick.dataset.row = i;
+        brick.dataset.column = j;
+        row.append(brick);
+        brick.addEventListener("click", colorBtnClick);
+      }
+    }
+  }
+}
