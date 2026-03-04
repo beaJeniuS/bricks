@@ -62,7 +62,7 @@ function updateSamples() {
         brick.dataset.row = i;
         brick.dataset.column = j;
         row.append(brick);
-        brick.addEventListener("click", colorBtnClick);
+        brick.addEventListener("click", () => {}); //TODO create color replace dialog
       }
     }
   }
