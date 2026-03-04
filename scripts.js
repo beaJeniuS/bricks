@@ -25,6 +25,13 @@ const appState = new AppState();
 
 updateInterface();
 
+if (genButton) {
+  genButton.addEventListener("click", () => {
+    generate();
+    updateSamples();
+  });
+}
+
 function generate() {
   const newDesign = [];
 
