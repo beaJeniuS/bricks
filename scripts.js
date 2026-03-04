@@ -23,6 +23,8 @@ const reports = document.querySelector(".reports-list");
 
 const appState = new AppState();
 
+updateInterface();
+
 function generate() {
   const newDesign = [];
 
@@ -57,4 +59,11 @@ function updateSamples() {
       }
     }
   }
+}
+
+function updateInterface() {
+  rowsCountEl.value = appState.rowsCount;
+  bricksCountEl.value = appState.bricksCount;
+  cbShowNumbers.checked = appState.showNumbers;
+  updateSamples();
 }
