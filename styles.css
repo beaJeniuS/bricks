@@ -220,3 +220,20 @@
 .color9 {
   background-image: var(--color9);
 }
+
+.stat-sample {
+  width: 130px;
+  height: 70px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  align-items: start;
+  box-shadow: 1px 1px 2px #000000;
+  padding: 5px;
+}
+
+.stat-sample span {
+  display: block;
+  user-select: none;
+}
