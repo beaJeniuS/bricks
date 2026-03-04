@@ -265,3 +265,12 @@
 .door.show {
   display: block;
 }
+
+.row {
+  display: flex;
+  column-gap: 2px;
+}
+
+.row:nth-child(odd) {
+  margin-left: 25px;
+}
