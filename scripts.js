@@ -22,3 +22,16 @@ const selLayoutName = document.querySelector("#layout-name");
 const reports = document.querySelector(".reports-list");
 
 const appState = new AppState();
+
+function generate() {
+  const newDesign = [];
+
+  for (let i = 0; i < appState.rowsCount; i++) {
+    newDesign.push([]);
+    for (let j = 0; j < appState.bricksCount; j++) {
+      const colorIndex = Math.floor(Math.random() * appState.colors.length);
+      newDesign[i].push(Number(appState.colors[colorIndex]));
+    }
+  }
+  appState.design = newDesign;
+}
