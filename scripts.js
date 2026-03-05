@@ -32,6 +32,18 @@ if (genButton) {
   });
 }
 
+if (saveBtn) {
+  saveBtn.addEventListener("click", () => {
+    appState.saveCurrentLayout();
+  });
+}
+
+if (saveAll) {
+  saveAll.addEventListener("click", () => {
+    appState.saveLayouts();
+  });
+}
+
 function generate() {
   const newDesign = [];
 
