@@ -52,6 +52,13 @@ if (saveAll) {
   });
 }
 
+if (loadBtn) {
+  loadBtn.addEventListener("click", () => {
+    appState.loadLayouts();
+    updateInterface();
+  });
+}
+
 if (rowsCountEl) {
   rowsCountEl.addEventListener("change", () => {
     appState.rowsCount = Number(rowsCountEl.value);
@@ -277,4 +284,47 @@ function createColorVariantElement(colorIndex, clickListener) {
   variantEl.append(label);
   cb.addEventListener("input", clickListener);
   return variantEl;
+}
+
+function updateColorsSamplesPan() {
+  colorsSamplesPan.replaceChildren();
+  appState.colors.forEach((color) => {
+    const newSample = document.createElement("div");
+    newSample.classList.add("color-sample", "color", `color${color}`);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("sample-del-btn");
+    deleteBtn.innerText = "X";
+    deleteBtn.addEventListener("click", () => {
+      appState.removeColor(color);
+      updateSamples();
+      updateColorsSamplesPan();
+      updateReport(2);
+    });
+    newSample.append(deleteBtn);
+    colorsSamplesPan.append(newSample);
+  });
+}
+
+function updateInterface() {
+  updateSelLayoutsNames();
+  updateColorsSamplesPan();
+  rowsCountEl.value = appState.rowsCount;
+  bricksCountEl.value = appState.bricksCount;
+  cbShowNumbers.checked = appState.showNumbers;
+  updateSamples();
+  if (reports) reports.replaceChildren();
+  updateReport();
+}
+
+function updateSelLayoutsNames() {
+  selLayoutName.replaceChildren();
+  appState.layoutsNames.forEach((name) => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.innerText = name;
+    selLayoutName.append(option);
+  });
+  selLayoutName.selectedIndex = Array.from(selLayoutName.options)
+    .map((opt) => opt.value)
+    .findIndex((el) => el === appState.layoutName);
 }
