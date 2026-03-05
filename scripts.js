@@ -328,3 +328,13 @@ function updateSelLayoutsNames() {
     .map((opt) => opt.value)
     .findIndex((el) => el === appState.layoutName);
 }
+
+if (cbShowDoor) {
+  cbShowDoor.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      door.classList.add("show");
+    } else {
+      door.classList.remove("show");
+    }
+  });
+}
