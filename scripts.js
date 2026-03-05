@@ -44,6 +44,25 @@ if (saveAll) {
   });
 }
 
+if (rowsCountEl) {
+  rowsCountEl.addEventListener("change", () => {
+    appState.rowsCount = Number(rowsCountEl.value);
+  });
+}
+
+if (cbShowNumbers) {
+  cbShowNumbers.addEventListener("change", (e) => {
+    appState.showNumbers = e.target.checked;
+    updateSamples();
+  });
+}
+
+if (bricksCountEl) {
+  bricksCountEl.addEventListener("change", () => {
+    appState.bricksCount = Number(bricksCountEl.value);
+  });
+}
+
 function generate() {
   const newDesign = [];
 
