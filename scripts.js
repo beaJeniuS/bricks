@@ -93,7 +93,7 @@ function updateSamples() {
         brick.dataset.row = i;
         brick.dataset.column = j;
         row.append(brick);
-        brick.addEventListener("click", () => {}); //TODO create color replace dialog
+        brick.addEventListener("click", colorBtnClick);
       }
     }
   }
@@ -104,4 +104,38 @@ function updateInterface() {
   bricksCountEl.value = appState.bricksCount;
   cbShowNumbers.checked = appState.showNumbers;
   updateSamples();
+}
+
+function createColorDialog(targetElement, clientX, clientY) {
+  const documentBody = document.querySelector("body");
+  const dialog = document.createElement("dialog");
+  dialog.classList.add("dialog");
+  const closeBtn = document.createElement("button");
+  closeBtn.classList.add("cd-close-btn");
+  closeBtn.style.left = `${clientX + 2}px`;
+  closeBtn.style.top = `${clientY + 2}px`;
+  dialog.append(closeBtn);
+
+  dialog.addEventListener("click", () => {
+    dialog.remove();
+  });
+  closeBtn.addEventListener("click", () => {
+    dialog.remove();
+  });
+  const cdRow = document.createElement("div");
+  cdRow.classList.add("cd-row");
+  cdRow.style.left = `${clientX}px`;
+  cdRow.style.top = `${clientY}px`;
+  dialog.append(cdRow);
+  for (let i = 0; i < appState.colors.length; i++) {
+    const btn = document.createElement("button");
+    btn.classList.add("cd-btn", `color${appState.colors[i]}`, "color");
+    btn.addEventListener("click", getListener(targetElement, dialog, i));
+    cdRow.append(btn);
+  }
+  documentBody.append(dialog);
+}
+
+function colorBtnClick(e) {
+  createColorDialog(e.currentTarget, e.clientX, e.clientY);
 }
