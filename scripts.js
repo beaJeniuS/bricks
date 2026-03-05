@@ -343,3 +343,16 @@ function updateStatistic() {
   stat.total = colorInxs.length;
   return stat;
 }
+
+function createReportCard(target, classList, color, count, total) {
+  const statCard = document.createElement("div");
+  classList.forEach((cl) => statCard.classList.add(cl));
+  const span1 = document.createElement("span");
+  span1.innerText = color === 0 ? `Без цвета` : `Цвет- ${color}`;
+  const span2 = document.createElement("span");
+  span2.innerText = `Количество: ${count}`;
+  const span3 = document.createElement("span");
+  span3.innerText = `Процент: ${((count / total) * 100).toFixed(1)}%`;
+  statCard.append(span1, span2, span3);
+  target.append(statCard);
+}
