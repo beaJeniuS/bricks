@@ -356,3 +356,9 @@ function createReportCard(target, classList, color, count, total) {
   statCard.append(span1, span2, span3);
   target.append(statCard);
 }
+
+if (reportBtn) {
+  reportBtn.addEventListener("click", () => {
+    updateReport();
+  });
+}
