@@ -338,3 +338,37 @@ if (cbShowDoor) {
     }
   });
 }
+
+function updateReport() {
+  const stat = updateStatistic();
+  const target = document.createElement("div");
+  if (target) {
+    target.classList.add("reports-list__item");
+    const numEl = document.createElement("span");
+    numEl.innerText = reports.children.length + 1;
+    target.append(numEl);
+    for (let i = 0; i < stat.colors.length; i++) {
+      createReportCard(
+        target,
+        ["color", `color${stat.colors[i].color}`, "stat-sample"],
+        stat.colors[i].color,
+        stat.colors[i].count,
+        stat.total,
+      );
+    }
+    if (stat.nocolor > 0) {
+      createReportCard(
+        target,
+        ["stat-sample", "no-color-report"],
+        0,
+        stat.nocolor,
+        stat.total,
+      );
+    }
+
+    const totalEl = document.createElement("div");
+    totalEl.innerText = `Всего: ${stat.total}`;
+    target.append(totalEl);
+    reports.append(target);
+  }
+}
