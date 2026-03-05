@@ -356,3 +356,74 @@ function createReportCard(target, classList, color, count, total) {
   statCard.append(span1, span2, span3);
   target.append(statCard);
 }
+
+function createNameDialog() {
+  const dialog = createDialog(400, 300, "Введите название раскладки");
+  const column = document.createElement("div");
+  column.classList.add("nd-column");
+  dialog.append(column);
+  const inputLabel = document.createElement("label");
+  const span = document.createElement("span");
+  const inputName = document.createElement("input");
+  span.innerText = "Название раскладки";
+  inputLabel.append(span, inputName);
+  inputLabel.classList.add("input-label");
+  inputName.type = "text";
+  column.append(inputLabel);
+
+  const errorLabel = document.createElement("label");
+  errorLabel.classList.add("error-label");
+  column.append(errorLabel);
+
+  const saveBtn = document.createElement("button");
+  saveBtn.innerText = "Сохранить";
+  saveBtn.disabled = true;
+  saveBtn.classList.add("dialog-button");
+
+  if (inputName) {
+    inputName.addEventListener("input", (e) => {
+      console.log(
+        `value - ${e.currentTarget.value}, `,
+        e.currentTarget.value.length,
+      );
+      if (e.currentTarget.value === "") {
+        errorLabel.innerText = "Нельзя сохранить с пустым названием!";
+        errorLabel.classList.add("error");
+        saveBtn.disabled = true;
+        console.log(
+          "e.currentTarget.value.length=0",
+          e.currentTarget.value.length,
+          e.currentTarget.value.length === 0,
+          e.currentTarget.value,
+          e.currentTarget.value === "",
+        );
+      } else if (appState.layoutsNames.includes(e.currentTarget.value)) {
+        errorLabel.innerText = "Раскладка с таким именем уже есть!";
+        errorLabel.classList.add("error");
+        saveBtn.disabled = true;
+      } else {
+        errorLabel.innerText = "";
+        errorLabel.classList.remove("error");
+        saveBtn.disabled = false;
+      }
+    });
+  }
+  if (saveBtn) {
+    saveBtn.addEventListener("click", () => {
+      const newLayout = new Layout();
+      newLayout.name = inputName.value;
+      newLayout.rowsCount = appState.currentLayout.rowsCount;
+      newLayout.bricksCount = appState.currentLayout.bricksCount;
+      newLayout.showNumbers = appState.currentLayout.showNumbers;
+      newLayout.design = Array.from(appState.currentLayout.design);
+      newLayout.colors = Array.from(appState.currentLayout.colors);
+      appState.addLayout(newLayout);
+      dialog.remove();
+      updateInterface();
+    });
+  }
+  const dialogFooter = document.createElement("div");
+  dialogFooter.classList.add("dialog-footer");
+  dialogFooter.append(saveBtn);
+  dialog.append(dialogFooter);
+}
