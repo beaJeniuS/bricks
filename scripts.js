@@ -120,13 +120,6 @@ function updateSamples() {
   }
 }
 
-function updateInterface() {
-  rowsCountEl.value = appState.rowsCount;
-  bricksCountEl.value = appState.bricksCount;
-  cbShowNumbers.checked = appState.showNumbers;
-  updateSamples();
-}
-
 function createColorDialog(targetElement, clientX, clientY) {
   const documentBody = document.querySelector("body");
   const dialog = document.createElement("dialog");
@@ -327,4 +320,26 @@ function updateSelLayoutsNames() {
   selLayoutName.selectedIndex = Array.from(selLayoutName.options)
     .map((opt) => opt.value)
     .findIndex((el) => el === appState.layoutName);
+}
+
+function updateStatistic() {
+  const stat = {
+    nocolor: 0,
+    colors: [],
+    total: 0,
+  };
+  const colorInxs = appState.design.flat();
+  stat.nocolor = colorInxs.reduce((acc, cv) => (cv === 0 ? acc + 1 : acc), 0);
+  for (let i = 1; i <= 9; i++) {
+    const exists = colorInxs.some((el) => el === i);
+    if (exists) {
+      const statObj = {
+        color: i,
+        count: colorInxs.reduce((acc, cv) => (cv === i ? acc + 1 : acc), 0),
+      };
+      stat.colors.push(statObj);
+    }
+  }
+  stat.total = colorInxs.length;
+  return stat;
 }
