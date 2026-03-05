@@ -32,6 +32,14 @@ if (genButton) {
   });
 }
 
+if (deleteAllColorsBtn) {
+  deleteAllColorsBtn.addEventListener("click", () => {
+    colorsSamplesPan.replaceChildren();
+    appState.colors = [];
+    updateSamples();
+  });
+}
+
 if (saveBtn) {
   saveBtn.addEventListener("click", () => {
     appState.saveCurrentLayout();
@@ -60,6 +68,12 @@ if (cbShowNumbers) {
 if (bricksCountEl) {
   bricksCountEl.addEventListener("change", () => {
     appState.bricksCount = Number(bricksCountEl.value);
+  });
+}
+
+if (addColorBtn) {
+  addColorBtn.addEventListener("click", () => {
+    createSampleChoiseDialog();
   });
 }
 
@@ -141,8 +155,6 @@ function colorBtnClick(e) {
 }
 
 function getListener(targetElement, dialog, colorIndex) {
-  console.log("click", targetElement);
-
   return () => {
     targetElement.classList.remove(
       "color1",
@@ -165,4 +177,104 @@ function getListener(targetElement, dialog, colorIndex) {
     );
     dialog.remove();
   };
+}
+
+function createDialog(width, height, caption) {
+  const documentBody = document.querySelector("body");
+  const dialog = document.createElement("dialog");
+  dialog.classList.add("dialog");
+  const dialogHeader = document.createElement("div");
+  dialogHeader.innerHTML = `<span>${caption}</span>` || "";
+  dialogHeader.classList.add("dialog-header");
+  const dialogBody = document.createElement("div");
+  dialogBody.classList.add("dialog-body");
+  dialogBody.style.width = `${width}px`;
+  dialogBody.style.height = `${height}px`;
+  dialogBody.append(dialogHeader);
+  dialog.append(dialogBody);
+
+  const closeBtn = document.createElement("button");
+  closeBtn.classList.add("cd-close-btn");
+  closeBtn.style.left = "94%";
+  closeBtn.style.top = "4px";
+  dialogHeader.append(closeBtn);
+
+  dialog.addEventListener("click", () => {
+    dialog.remove();
+  });
+
+  dialogBody.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+
+  closeBtn.addEventListener("click", () => {
+    dialog.remove();
+  });
+
+  documentBody.append(dialog);
+  return dialogBody;
+}
+
+function createSampleChoiseDialog() {
+  const availableColors = ["1", "2", "3", "4", "5", "6", "7", "8", "9"].filter(
+    (el) => !appState._currentLayout.colors.includes(el),
+  );
+
+  const dialog = createDialog(300, 300, "Выберите варианты цветов");
+  const column = document.createElement("div");
+  column.classList.add("variants");
+  dialog.append(column);
+  const addBtn = document.createElement("button");
+  addBtn.innerText = "Добавить";
+  addBtn.classList.add("dialog-button");
+  const listener = (e) => {
+    const checkedColors = Array.from(
+      document.querySelectorAll(".variants input"),
+    ).filter((el) => el.checked);
+    if (checkedColors.length > 0) {
+      addBtn.disabled = false;
+    } else {
+      addBtn.disabled = true;
+    }
+  };
+  for (let i = 0; i < availableColors.length; i++) {
+    const variantColor = createColorVariantElement(
+      availableColors[i],
+      listener,
+    );
+    column.append(variantColor);
+  }
+
+  addBtn.disabled = true;
+  addBtn.addEventListener("click", () => {
+    const checkedColors = Array.from(
+      document.querySelectorAll(".variants input"),
+    )
+      .filter((el) => el.checked)
+      .map((el) => el.dataset.id);
+    checkedColors.forEach((color) => appState.addColor(color));
+    updateInterface();
+    dialog.remove();
+  });
+  const dialogFooter = document.createElement("div");
+  dialogFooter.classList.add("dialog-footer");
+  dialogFooter.append(addBtn);
+  dialog.append(dialogFooter);
+}
+
+function createColorVariantElement(colorIndex, clickListener) {
+  const variantEl = document.createElement("div");
+  variantEl.classList.add("variants__item");
+  const label = document.createElement("label");
+  label.htmlFor = `color${colorIndex}`;
+  const cb = document.createElement("input");
+  cb.id = `color${colorIndex}`;
+  cb.dataset.id = `${colorIndex}`;
+  cb.type = "checkbox";
+  const sample = document.createElement("div");
+  sample.classList.add("color-sample", "color", `color${colorIndex}`);
+  label.append(cb, sample);
+  variantEl.append(label);
+  cb.addEventListener("input", clickListener);
+  return variantEl;
 }

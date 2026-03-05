@@ -148,6 +148,39 @@
   background-color: var(--border-color);
 }
 
+.dialog-body {
+  background-color: #e8e8e8;
+  border: 1px solid var(--border-color);
+  box-shadow: 1px 1px 3px #c0c0c0;
+  border-radius: 3px;
+  margin: 0 auto;
+  align-self: center;
+  position: relative;
+}
+
+.dialog-header span {
+  margin-left: 5px;
+  color: #ffffff;
+  user-select: none;
+}
+
+.dialog-header {
+  height: 30px;
+  background-color: var(--dialog-header-color);
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-footer {
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .image-button {
   display: flex;
   column-gap: 5px;
@@ -323,4 +356,29 @@
   align-self: flex-start;
   position: absolute;
   z-index: 2;
+}
+
+.variants {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+  align-items: center;
+}
+
+.variants__item {
+  display: flex;
+  column-gap: 10px;
+}
+
+.variants__item input {
+  display: none;
+}
+
+.variants__item label {
+  display: flex;
+}
+
+.variants__item input:checked + .color-sample {
+  border: 2px solid #ff0000;
 }
