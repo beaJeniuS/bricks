@@ -141,6 +141,8 @@ function colorBtnClick(e) {
 }
 
 function getListener(targetElement, dialog, colorIndex) {
+  console.log("click", targetElement);
+
   return () => {
     targetElement.classList.remove(
       "color1",

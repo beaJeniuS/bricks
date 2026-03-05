@@ -117,6 +117,17 @@
   column-gap: 5px;
 }
 
+.dialog {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  background-color: transparent;
+  border: 0px;
+}
+
 .dialog-button {
   padding: 10px;
   color: #ffffff;
@@ -273,4 +284,43 @@
 
 .row:nth-child(odd) {
   margin-left: 25px;
+}
+
+.cd-row {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  row-gap: 3px;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  height: fit-content;
+  position: absolute;
+  box-shadow: 2px 2px 5px #000000;
+  padding-top: 20px;
+}
+.cd-btn {
+  width: 50px;
+  height: 14px;
+  cursor: pointer;
+  border: 1px solid #a3a3a3;
+  border-radius: 2px;
+}
+.cd-btn:hover {
+  border: 1px solid #ffffff;
+}
+.cd-btn:active {
+  transform: translateY(2px);
+}
+.cd-sample:hover {
+  border: 1px solid #ff0000;
+}
+.cd-close-btn {
+  width: 15px;
+  height: 15px;
+  background-color: #ff0000;
+  border-radius: 5px;
+  align-self: flex-start;
+  position: absolute;
+  z-index: 2;
 }
